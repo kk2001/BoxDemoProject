@@ -45,6 +45,12 @@ private:
     
     b2Body* worldGroudBody;
     
+    b2Body* arm_body;
+    
+    b2Fixture* arm_fixture;
+    
+    b2RevoluteJoint* m_armJoint;
+    
     
 };
 
