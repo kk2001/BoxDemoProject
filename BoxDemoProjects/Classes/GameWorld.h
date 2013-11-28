@@ -12,18 +12,39 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
+#include "Box2D.h"
 
 class GameWorld : public CCLayer {
     
     
 public:
     
+    GameWorld();
+    ~GameWorld();
     virtual bool init();
     
     CREATE_FUNC( GameWorld );
     
+    void init_b2();
     
     static CCScene* scene();
+    
+    
+    void init_ui();
+    
+    void update( float dt ){
+        
+        world->Step(dt, 8,  1);
+        logic();
+        
+    }
+    
+    void logic();
+private:
+    b2World* world;
+    
+    b2Body* worldGroudBody;
+    
     
 };
 
