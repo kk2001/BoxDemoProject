@@ -5,23 +5,40 @@
 //  Created by cesc on 13-11-28.
 //
 //
-#define FLOOR_HEIGHT 62
+#define FLOOR_HEIGHT 62.0f
 #define PM_ITO  32
 #include "GameWorld.h"
 
+GameWorld::GameWorld(){}
+GameWorld::~GameWorld(){}
 
 
-GameWorld::GameWorld(){
+void GameWorld::logic(){
     
     
+    
+    for (b2Body* b = world->GetBodyList(); b ; b = b->GetNext()) {
+       
+        if (b->GetUserData() ) {
+           
+            CCSprite* sp = (CCSprite*)b->GetUserData();
+            
+            sp->setPosition( ccp( b->GetPosition().x * PM_ITO, b->GetPosition().y * PM_ITO ));
+            
+            sp->setRotation( CC_RADIANS_TO_DEGREES( b->GetAngle()) * -1);
+        }
+        
+        
+    }
     
 }
-GameWorld::~GameWorld(){
+ CCScene* GameWorld::scene(){
     
+     CCScene* s = CCScene::create();
+     
+     s->addChild( GameWorld::create() );
     
-    CC_SAFE_DELETE( world );
-    CC_SAFE_DELETE( arm_fixture );
-    
+    return s;
 }
 
 
@@ -30,109 +47,145 @@ bool GameWorld::init(){
         return false;
     }
     
+    init_ui();
     
     init_b2();
     
-    init_ui();
+    setTouchEnabled( true );
     
     scheduleUpdate();
     
-    
-    
     return true;
+}
+
+void GameWorld::init_b2(){
+    b2Vec2 gravity;
+    gravity.Set(0, -10.0f);
+    
+    world = new b2World( gravity );
+    
+    world->SetAllowSleeping( true );
+    world->SetContinuousPhysics( true );
+    
+    b2BodyDef groundDef;
+    groundDef.position.Set(0, 0);
+    
+    worldGroudBody = world->CreateBody( &groundDef );
+    
+    CCSize size = CCDirector::sharedDirector()->getVisibleSize();
+    
+    b2EdgeShape shape;
+    // bottom
+    shape.Set( b2Vec2(0, FLOOR_HEIGHT / PM_ITO), b2Vec2( size.width * 2 / PM_ITO , FLOOR_HEIGHT / PM_ITO ));
+
+    worldGroudBody->CreateFixture(&shape, 0);
+    
+    // top
+    shape.Set(b2Vec2( 0, size.height / PM_ITO), b2Vec2( size.width * 2 / PM_ITO,size.height / PM_ITO ));
+    worldGroudBody->CreateFixture(&shape, 0);
+    
+    // left
+    shape.Set(b2Vec2(0,FLOOR_HEIGHT / PM_ITO), b2Vec2(0, size.height / PM_ITO ));
+    worldGroudBody->CreateFixture(&shape, 0);
+    
+    // right
+    shape.Set(b2Vec2( size.width * 2 /PM_ITO, size.height / PM_ITO ), b2Vec2( size.width * 2 /PM_ITO , FLOOR_HEIGHT /PM_ITO  ));
+    worldGroudBody->CreateFixture(&shape, 0);
+    
+    CCSprite* arm= CCSprite::create("catapult_arm.png");
+    this->addChild(arm, 1);
+    
+    b2BodyDef armBodyDef;
+    armBodyDef.userData = arm;
+    armBodyDef.linearDamping = 1;
+    armBodyDef.angularVelocity = 1;
+    armBodyDef.type = b2_dynamicBody;
+    armBodyDef.position.Set( 230.0f/PM_ITO, (FLOOR_HEIGHT + 91.0f)/PM_ITO   );
+    arm_body = world->CreateBody( &armBodyDef );
+    
+    b2PolygonShape box;
+    box.SetAsBox(11.0f/PM_ITO, 91.0f/PM_ITO );
+    
+    b2FixtureDef fixdef;
+    fixdef.shape = &box;
+    fixdef.density = 0.3f;
+    
+    arm_fixture = arm_body->CreateFixture( &fixdef );
+    
+    
+    
+    b2RevoluteJointDef rJointDef;
+    rJointDef.Initialize(worldGroudBody, arm_body, b2Vec2(233.0f/PM_ITO, FLOOR_HEIGHT/PM_ITO));
+    rJointDef.enableLimit = true;
+    rJointDef.enableMotor = true;
+    rJointDef.maxMotorTorque =  700;
+    rJointDef.motorSpeed =  -10;
+    rJointDef.upperAngle = CC_DEGREES_TO_RADIANS( 75);
+    rJointDef.lowerAngle = CC_DEGREES_TO_RADIANS( 9 );
+    m_armJoint = (b2RevoluteJoint*)world->CreateJoint( &rJointDef );
+    
+    
+    
 }
 
 void GameWorld::init_ui(){
     
     CCSprite* bg = CCSprite::create( "images/bg.png");
-    
     bg->setAnchorPoint( CCPointZero );
+    this->addChild( bg,-1 );
     
-    this->addChild( bg );
+    CCSprite* bottom = CCSprite::create( "images/catapult_base_2.png");
+    this->addChild( bottom ,1 );
+    bottom->setAnchorPoint( CCPointZero );
+    bottom->setPosition( ccp( 181.0f, FLOOR_HEIGHT ));
     
+    CCSprite* bottom2 = CCSprite::create("catapult_base_1.png");   //投射器底部前面那块
+    bottom2->setAnchorPoint(CCPointZero);
+    bottom2->setPosition(CCPointMake(181.0f, FLOOR_HEIGHT));
+    this->addChild(bottom2, 9);
     
-    CCSprite* arm = CCSprite::create( "images/catapult_arm.png");
-    this->addChild( arm ,1 );
-    
-    arm->setPosition( ccp( 230,FLOOR_HEIGHT + 10 ));
-    b2BodyDef armBodyDef;
-    armBodyDef.type = b2_dynamicBody;
-    armBodyDef.position.Set(230/PM_ITO, ( FLOOR_HEIGHT  + 10) /PM_ITO );
-    armBodyDef.linearDamping = 1;
-    armBodyDef.angularDamping = 1;
-    armBodyDef.userData = arm;
-    
-    arm_body = world->CreateBody( &armBodyDef);
-    
-    b2PolygonShape armShape;
-    armShape.SetAsBox( arm->getContentSize().width /2 /PM_ITO, arm->getContentSize().height / 2 / PM_ITO );
-    
-    b2FixtureDef fixtureDef;
-    fixtureDef.density = 0.3f;
-    fixtureDef.shape = &armShape;
-    
-    arm_fixture = arm_body->CreateFixture( &fixtureDef);
+    CCSprite* ice = CCSprite::create("fg.png");    //带冰的地面
+    ice->setAnchorPoint(CCPointZero);
+    this->addChild(ice, 10);
     
     
+    CCSprite* songshu1 = CCSprite::create("squirrel_1.png");        //左边松鼠
+    songshu1->setAnchorPoint(CCPointZero);
+    songshu1->setPosition(CCPointMake(11.0, FLOOR_HEIGHT));
+    this->addChild(songshu1, 0);
     
     
-}
-void GameWorld::init_b2(){
-    
-    CCSize s = CCDirector::sharedDirector()->getWinSize();
-    
-    b2Vec2 gravity;
-    gravity.Set(0.0f,-10.0f);
-    world = new b2World( gravity );
-    
-    bool doSleeping = true;
-    world->SetAllowSleeping( doSleeping );
-    world->SetContinuousPhysics( true );
-    
-    // define groud box
-    b2BodyDef groundDef;
-    groundDef.position.Set( 0, 0);
-    
-    worldGroudBody = world->CreateBody( &groundDef );
-    
-    
-    b2EdgeShape edge;
-    
-    edge.Set( b2Vec2( 0 , FLOOR_HEIGHT / PM_ITO ) , b2Vec2( s.width * 2/ PM_ITO ,FLOOR_HEIGHT / PM_ITO ) );
-    worldGroudBody->CreateFixture(&edge, 0 );
-    
-    
-    edge.Set( b2Vec2( 0 , s.height / PM_ITO ) , b2Vec2( s.width * 2/PM_ITO ,s.height / PM_ITO ) );
-    worldGroudBody->CreateFixture(&edge, 0 );
-    
-    
-    edge.Set( b2Vec2( 0 , FLOOR_HEIGHT / PM_ITO ) , b2Vec2( 0 ,s.height / PM_ITO ) );
-    worldGroudBody->CreateFixture(&edge, 0 );
-    
-    edge.Set( b2Vec2( s.width *2/ PM_ITO   , FLOOR_HEIGHT / PM_ITO ) , b2Vec2( s.width * 2/ PM_ITO ,FLOOR_HEIGHT / PM_ITO ) );
-    worldGroudBody->CreateFixture(&edge, 0 );
+    CCSprite* songshu2 = CCSprite::create("squirrel_2.png");    //右边松鼠
+    songshu2->setAnchorPoint(CCPointZero);
+    songshu2->setPosition(CCPointMake(240.0, FLOOR_HEIGHT));
+    this->addChild(songshu2, 9);
 }
 
-void GameWorld::logic(){
+
+void GameWorld::onEnter(){
     
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext()) {
-        
-        if ( b->GetUserData() ) {
-            CCSprite* sp = (CCSprite*)b->GetUserData();
-            sp->setPosition( ccp( b->GetPosition().x * PM_ITO, b->GetPosition().y * PM_ITO  ));
-            
-            sp->setRotation( -1 *CC_RADIANS_TO_DEGREES(b->GetAngle()  ));
-        }
-    }
+    CCLayer::onEnter();
+    
+}
+
+void GameWorld::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     
     
 }
 
-CCScene* GameWorld::scene(){
+
+void GameWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     
-    CCScene* sc = CCScene::create();
+}
+
+
+bool GameWorld::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     
-    sc->addChild(  GameWorld::create() );
+
     
-    return sc;
+    return true;
+}
+
+void GameWorld::onExit(){
+    CCLayer::onExit();
 }

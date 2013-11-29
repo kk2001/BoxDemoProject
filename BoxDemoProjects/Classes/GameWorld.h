@@ -40,6 +40,15 @@ public:
     }
     
     void logic();
+    
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    
+    virtual void onEnter();
+    virtual void onExit();
+    
+    
 private:
     b2World* world;
     
@@ -51,6 +60,7 @@ private:
     
     b2RevoluteJoint* m_armJoint;
     
+    b2MouseJoint* m_mouseJoint;
     
 };
 

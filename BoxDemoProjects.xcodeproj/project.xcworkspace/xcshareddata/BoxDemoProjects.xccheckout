@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B85C2B56-FC1D-47A8-A00D-BB87B9240D66</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BoxDemoProjects</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3AFB379B-3762-46C2-822E-68D9371C944A</key>
+		<string>https://github.com/kk2001/BoxDemoProject.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BoxDemoProjects.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3AFB379B-3762-46C2-822E-68D9371C944A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kk2001/BoxDemoProject.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3AFB379B-3762-46C2-822E-68D9371C944A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3AFB379B-3762-46C2-822E-68D9371C944A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BoxDemoProjects</string>
+		</dict>
+	</array>
+</dict>
+</plist>
