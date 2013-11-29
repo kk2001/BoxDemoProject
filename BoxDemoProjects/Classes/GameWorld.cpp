@@ -9,7 +9,12 @@
 #define PM_ITO  32
 #include "GameWorld.h"
 
-GameWorld::GameWorld(){}
+GameWorld::GameWorld(){
+
+
+    m_mouseJoint = NULL;
+
+}
 GameWorld::~GameWorld(){}
 
 
@@ -165,27 +170,63 @@ void GameWorld::init_ui(){
 void GameWorld::onEnter(){
     
     CCLayer::onEnter();
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true );
     
 }
 
 void GameWorld::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     
     
+    world->DestroyJoint(m_mouseJoint );
+    m_mouseJoint = NULL;
+    
 }
 
 
 void GameWorld::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
+    
+    if ( m_mouseJoint == NULL ) {
+        return ;
+    }
+    CCPoint p = pTouch->getLocation();
+    
+    b2Vec2 v  = b2Vec2( p.x /PM_ITO,p.y/ PM_ITO );
+    
+    m_mouseJoint->SetTarget( v );
+    
+    
     
 }
 
 
 bool GameWorld::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     
-
+    if ( m_mouseJoint != NULL ) {
+        return  false;
+    }
     
-    return true;
+    
+    CCPoint p = pTouch->getLocation();
+    
+    b2Vec2 locationWorld  = b2Vec2( p.x / PM_ITO , p.y /PM_ITO );
+    if ( locationWorld.x < arm_body->GetWorldCenter().x + 150/PM_ITO) {
+        b2MouseJointDef mouseDef;
+        mouseDef.bodyA = worldGroudBody;
+        mouseDef.bodyB = arm_body;
+        mouseDef.maxForce = 2000;
+        mouseDef.target = locationWorld;
+        
+        m_mouseJoint = (b2MouseJoint*)world->CreateJoint(&mouseDef);
+        
+        return true;
+        
+    }
+        
+    
+    return false;
 }
 
 void GameWorld::onExit(){
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate( this );
     CCLayer::onExit();
 }
