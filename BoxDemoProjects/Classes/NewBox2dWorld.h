@@ -10,6 +10,7 @@
 #define __BoxDemoProjects__NewBox2dWorld__
 
 #include "Box2d.h"
+#include "MyContractListener.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -31,12 +32,18 @@ public:
     
     CREATE_FUNC( NewBox2dWorld );
     
+    void addsprite( float dt );
     
     void update(float dt );
     
+    CCSpriteBatchNode* spriteBacthNode;
     
 private:
-b2World* m_world;
+    b2World* m_world;
+    
+    MyContractListener contractListener;
+    int count;
+    
 };
 
 #endif /* defined(__BoxDemoProjects__NewBox2dWorld__) */

@@ -12,11 +12,15 @@
 
 NewBox2dWorld::NewBox2dWorld(){
     
-
+    spriteBacthNode = CCSpriteBatchNode::create( "Icon.png");
+    CC_SAFE_RETAIN( spriteBacthNode );
+    
+    count = 0;
     
 }
 NewBox2dWorld::~NewBox2dWorld(){
     
+    CC_SAFE_RELEASE_NULL( spriteBacthNode );
     delete m_world;
     
 }
@@ -38,6 +42,7 @@ void NewBox2dWorld::init_b2World(){
     m_world = new b2World(  gravity );
     m_world->SetAllowSleeping( true );
     m_world->SetContinuousPhysics( true );
+    m_world->SetContactListener( &contractListener );
     
     b2BodyDef groundbodydef;
     groundbodydef.position.SetZero();
@@ -66,20 +71,33 @@ bool NewBox2dWorld::init(){
     
     init_b2World();
     
-    init_other();
+    this->addChild( spriteBacthNode ,1 );
+    
+    this->schedule( schedule_selector(NewBox2dWorld::addsprite), 1.0f);
     
     scheduleUpdate();
     return true;
 }
 
+void NewBox2dWorld::addsprite(float dt){
+    
+    count++;
+    
+    if ( count > 5) {
+        unschedule( schedule_selector( NewBox2dWorld::addsprite));
+        return;
+    }
+    
+    init_other();
+}
 
 void NewBox2dWorld::init_other(){
     
     CCSize size = CCDirector::sharedDirector()->getWinSize();
     
-    CCSprite* sp = CCSprite::create( "Icon-72.png");
+    CCSprite* sp = CCSprite::create( "Icon.png");
     
-    this->addChild( sp ,1);
+    spriteBacthNode->addChild( sp );
     
     b2BodyDef spBodyDef;
     spBodyDef.position.Set( size.width /2 /PM_ITO, size.height * 0.7 /PM_ITO );
