@@ -43,6 +43,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // run
     pDirector->runWithScene(pScene);
+    
+    
+    CCLOG("进入这里");
 
     return true;
 }
