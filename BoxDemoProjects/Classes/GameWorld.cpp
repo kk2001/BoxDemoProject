@@ -230,3 +230,12 @@ void GameWorld::onExit(){
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate( this );
     CCLayer::onExit();
 }
+
+b2Body* GameWorld::getBullet(){
+
+    CCSprite* sp = CCSprite::create( "Icon.png");
+    this->addChild( sp, 111);
+
+    
+
+}
