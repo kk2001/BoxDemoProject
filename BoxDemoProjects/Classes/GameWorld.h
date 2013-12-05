@@ -48,6 +48,8 @@ public:
     virtual void onEnter();
     virtual void onExit();
     
+    b2Body* getBullet(); // 获取子弹 
+    
     
 private:
     b2World* world;
