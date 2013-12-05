@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB3660AA184F67DA00ACE338 /* NewBox2dWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */; };
 		CB9613DC184F80F70026B8CF /* MyContractListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9613DA184F80F70026B8CF /* MyContractListener.cpp */; };
+		CE4442B11850688A008F1F82 /* ShootScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4442AF1850688A008F1F82 /* ShootScene.cpp */; };
 		CE5CACD218473BE8008F1945 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD118473BE8008F1945 /* QuartzCore.framework */; };
 		CE5CACD418473BE8008F1945 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD318473BE8008F1945 /* OpenGLES.framework */; };
 		CE5CACD618473BE8008F1945 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD518473BE8008F1945 /* OpenAL.framework */; };
@@ -300,6 +301,7 @@
 		CE5CB0AA18473BED008F1945 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE5CB0A918473BED008F1945 /* HelloWorldScene.cpp */; };
 		CE5CB0AC18473BED008F1945 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5CB0AB18473BED008F1945 /* blocks.png */; };
 		CE5CB0B518473D8A008F1945 /* GameWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE5CB0B318473D8A008F1945 /* GameWorld.cpp */; };
+		CEE639A718506B2C00CDDB74 /* B2Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE639A518506B2C00CDDB74 /* B2Utils.cpp */; };
 		CEE9C4861847408600D5321C /* images in Resources */ = {isa = PBXBuildFile; fileRef = CEE9C4851847408600D5321C /* images */; };
 /* End PBXBuildFile section */
 
@@ -308,6 +310,8 @@
 		CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBox2dWorld.h; path = Classes/NewBox2dWorld.h; sourceTree = "<group>"; };
 		CB9613DA184F80F70026B8CF /* MyContractListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContractListener.cpp; path = Classes/MyContractListener.cpp; sourceTree = "<group>"; };
 		CB9613DB184F80F70026B8CF /* MyContractListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContractListener.h; path = Classes/MyContractListener.h; sourceTree = "<group>"; };
+		CE4442AF1850688A008F1F82 /* ShootScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShootScene.cpp; path = Classes/ShootScene.cpp; sourceTree = "<group>"; };
+		CE4442B01850688A008F1F82 /* ShootScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShootScene.h; path = Classes/ShootScene.h; sourceTree = "<group>"; };
 		CE5CACCE18473BE8008F1945 /* BoxDemoProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxDemoProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5CACD118473BE8008F1945 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE5CACD318473BE8008F1945 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -933,6 +937,8 @@
 		CE5CB0AB18473BED008F1945 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		CE5CB0B318473D8A008F1945 /* GameWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameWorld.cpp; path = Classes/GameWorld.cpp; sourceTree = "<group>"; };
 		CE5CB0B418473D8A008F1945 /* GameWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameWorld.h; path = Classes/GameWorld.h; sourceTree = "<group>"; };
+		CEE639A518506B2C00CDDB74 /* B2Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = B2Utils.cpp; path = Classes/B2Utils.cpp; sourceTree = "<group>"; };
+		CEE639A618506B2C00CDDB74 /* B2Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = B2Utils.h; path = Classes/B2Utils.h; sourceTree = "<group>"; };
 		CEE9C4851847408600D5321C /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = Resources/images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2208,6 +2214,10 @@
 				CB9613DB184F80F70026B8CF /* MyContractListener.h */,
 				CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */,
 				CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */,
+				CE4442AF1850688A008F1F82 /* ShootScene.cpp */,
+				CE4442B01850688A008F1F82 /* ShootScene.h */,
+				CEE639A518506B2C00CDDB74 /* B2Utils.cpp */,
+				CEE639A618506B2C00CDDB74 /* B2Utils.h */,
 				CE5CB0B318473D8A008F1945 /* GameWorld.cpp */,
 				CE5CB0B418473D8A008F1945 /* GameWorld.h */,
 				CE5CB0A518473BED008F1945 /* AppDelegate.h */,
@@ -2332,6 +2342,7 @@
 				CE5CB08318473BED008F1945 /* b2MouseJoint.cpp in Sources */,
 				CE5CB06D18473BED008F1945 /* b2EdgeAndPolygonContact.cpp in Sources */,
 				CE5CAFDB18473BEC008F1945 /* Attachment.cpp in Sources */,
+				CEE639A718506B2C00CDDB74 /* B2Utils.cpp in Sources */,
 				CE5CAEEB18473BEB008F1945 /* CCTouch.cpp in Sources */,
 				CE5CAD7018473BE9008F1945 /* CCDrawNode.cpp in Sources */,
 				CE5CAE3718473BEA008F1945 /* platform.cpp in Sources */,
@@ -2440,6 +2451,7 @@
 				CE5CAD5E18473BE9008F1945 /* CCObject.cpp in Sources */,
 				CE5CAF9218473BEC008F1945 /* CCScale9Sprite.cpp in Sources */,
 				CE5CAE9A18473BEB008F1945 /* CCComponent.cpp in Sources */,
+				CE4442B11850688A008F1F82 /* ShootScene.cpp in Sources */,
 				CE5CAED118473BEB008F1945 /* CCTextureETC.cpp in Sources */,
 				CE5CAF5C18473BEC008F1945 /* CCSpriteLoader.cpp in Sources */,
 				CE5CB07718473BED008F1945 /* b2DistanceJoint.cpp in Sources */,
