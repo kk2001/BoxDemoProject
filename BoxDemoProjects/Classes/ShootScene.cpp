@@ -161,8 +161,19 @@ void ShootScene::init_shoot(){
     banshouBody->CreateFixture( &shootFixtureDef );
     
     
-    
     b2RevoluteJointDef _reDefine;
+    _reDefine.bodyA = shoot_base_body;
+    _reDefine.bodyB = banshouBody;
+    _reDefine.localAnchorA.Set(0.5, 1);
+    _reDefine.localAnchorB.Set(0.5, 0);
+    
+    _reDefine.enableLimit = true;
+    _reDefine.enableMotor = true;
+    _reDefine.lowerAngle = CC_DEGREES_TO_RADIANS( 30 );
+    _reDefine.upperAngle = CC_DEGREES_TO_RADIANS( 75 );
+    _reDefine.motorSpeed = -10;
+    _reDefine.maxMotorTorque = 2000;
+    /**
     _reDefine.Initialize(shoot_base_body, banshouBody,B2Utils::convertToB2Point( banshou->getPosition() ) );
     _reDefine.enableMotor = true;
     _reDefine.enableLimit = true;
@@ -170,6 +181,7 @@ void ShootScene::init_shoot(){
     _reDefine.upperAngle = CC_RADIANS_TO_DEGREES( 75);
     _reDefine.maxMotorTorque = 1000;
     _reDefine.motorSpeed = -20;
+     **/
    
     
     revoleJoint = (b2RevoluteJoint*)world->CreateJoint( &_reDefine);
