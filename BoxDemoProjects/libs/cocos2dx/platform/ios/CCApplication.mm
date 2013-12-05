@@ -49,6 +49,7 @@ int CCApplication::run()
 {
     if (applicationDidFinishLaunching()) 
     {
+        CCLOG("enter");
         [[CCDirectorCaller sharedDirectorCaller] startMainLoop];
     }
     return 0;

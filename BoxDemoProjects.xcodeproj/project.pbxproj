@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB3660AA184F67DA00ACE338 /* NewBox2dWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */; };
+		CB9613DC184F80F70026B8CF /* MyContractListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9613DA184F80F70026B8CF /* MyContractListener.cpp */; };
 		CE5CACD218473BE8008F1945 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD118473BE8008F1945 /* QuartzCore.framework */; };
 		CE5CACD418473BE8008F1945 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD318473BE8008F1945 /* OpenGLES.framework */; };
 		CE5CACD618473BE8008F1945 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD518473BE8008F1945 /* OpenAL.framework */; };
@@ -302,6 +304,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NewBox2dWorld.cpp; path = Classes/NewBox2dWorld.cpp; sourceTree = "<group>"; };
+		CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBox2dWorld.h; path = Classes/NewBox2dWorld.h; sourceTree = "<group>"; };
+		CB9613DA184F80F70026B8CF /* MyContractListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContractListener.cpp; path = Classes/MyContractListener.cpp; sourceTree = "<group>"; };
+		CB9613DB184F80F70026B8CF /* MyContractListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContractListener.h; path = Classes/MyContractListener.h; sourceTree = "<group>"; };
 		CE5CACCE18473BE8008F1945 /* BoxDemoProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxDemoProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5CACD118473BE8008F1945 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE5CACD318473BE8008F1945 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2198,6 +2204,10 @@
 		CE5CB0A418473BED008F1945 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CB9613DA184F80F70026B8CF /* MyContractListener.cpp */,
+				CB9613DB184F80F70026B8CF /* MyContractListener.h */,
+				CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */,
+				CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */,
 				CE5CB0B318473D8A008F1945 /* GameWorld.cpp */,
 				CE5CB0B418473D8A008F1945 /* GameWorld.h */,
 				CE5CB0A518473BED008F1945 /* AppDelegate.h */,
@@ -2301,6 +2311,7 @@
 				CE5CAE2818473BEA008F1945 /* CCLock.cpp in Sources */,
 				CE5CAFE718473BEC008F1945 /* CCSkeleton.cpp in Sources */,
 				CE5CAED818473BEB008F1945 /* CCParallaxNode.cpp in Sources */,
+				CB3660AA184F67DA00ACE338 /* NewBox2dWorld.cpp in Sources */,
 				CE5CAD4518473BE8008F1945 /* CCAffineTransform.cpp in Sources */,
 				CE5CAD0018473BE8008F1945 /* RootViewController.mm in Sources */,
 				CE5CAE8718473BEB008F1945 /* CCNotificationCenter.cpp in Sources */,
@@ -2549,6 +2560,7 @@
 				CE5CAF7618473BEC008F1945 /* CCControlColourPicker.cpp in Sources */,
 				CE5CB05718473BED008F1945 /* b2WorldCallbacks.cpp in Sources */,
 				CE5CB08918473BED008F1945 /* b2PulleyJoint.cpp in Sources */,
+				CB9613DC184F80F70026B8CF /* MyContractListener.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2631,7 +2643,7 @@
 				GCC_PREFIX_HEADER = BoxDemoProjects/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = BoxDemoProjects/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/BoxDemoProjects/libs/cocos2dx/platform/third_party/ios/libraries",
@@ -2658,7 +2670,7 @@
 				GCC_PREFIX_HEADER = BoxDemoProjects/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = BoxDemoProjects/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/BoxDemoProjects/libs/cocos2dx/platform/third_party/ios/libraries",
