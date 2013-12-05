@@ -103,8 +103,38 @@ bool ShootScene::init(){
 
 void ShootScene::init_b2(){
     
+    CCSize s = CCDirector::sharedDirector()->getWinSize();
     
-    world = B2Utils::createWorldWithEdge( );
+    b2Vec2 gravity( 0.0f, -10.0f);
+    
+     world = new b2World( gravity );
+    
+    world->SetAllowSleeping( true );
+    world->SetContinuousPhysics( true );
+    
+    b2BodyDef worlddef;
+    worlddef.position.SetZero();
+    
+   world_body = world->CreateBody( &worlddef);
+    
+    
+    b2EdgeShape edge;
+    edge.Set( b2Vec2(0, 0 ), b2Vec2( s.width / 2 / PM_ITO , 0  ));
+    
+    world_body->CreateFixture(&edge, 0 );
+    
+    edge.Set( b2Vec2(0, s.height / PM_ITO   ), b2Vec2( s.width / 2 / PM_ITO , s.height / PM_ITO  ));
+    
+    world_body->CreateFixture(&edge, 0 );
+    
+    edge.Set( b2Vec2(0, s.height / PM_ITO ), b2Vec2( 0 , 0  ));
+    
+    world_body->CreateFixture(&edge, 0 );
+    
+    edge.Set( b2Vec2( s.width / PM_ITO , 0 ), b2Vec2( s.width / 2 / PM_ITO , s.height / PM_ITO  ));
+    
+    world_body->CreateFixture(&edge, 0 );
+    
     
     
 }
@@ -147,6 +177,10 @@ void ShootScene::init_shoot(){
     banshou->setPosition( ccp( shoot_base->getPositionX() , shoot_base->boundingBox().getMaxY() +banshou->getContentSize().height / 2 ) );
     
     b2BodyDef shoot_def;
+    shoot_def.userData = banshou;
+    shoot_def.linearDamping = 1;  // 设置这个之后可以进行还原
+    shoot_def.angularDamping = 1;
+    
     shoot_def.type = b2_dynamicBody;
     shoot_def.position.Set( banshou->getPositionX() / PM_ITO , banshou->getPositionY() / PM_ITO );
     
@@ -154,39 +188,23 @@ void ShootScene::init_shoot(){
     b2PolygonShape s_shape;
     s_shape.SetAsBox( banshou->getContentSize().width / 2 /PM_ITO, banshou->getContentSize().height / 2 /PM_ITO );
     shootFixtureDef.density = 10.0f;
+    shootFixtureDef.restitution = 0.3f;
     shootFixtureDef.shape = &s_shape;
     
     
     banshouBody = world->CreateBody( &shoot_def );
     banshouBody->CreateFixture( &shootFixtureDef );
     
-    
-    b2RevoluteJointDef _reDefine;
-    _reDefine.bodyA = shoot_base_body;
-    _reDefine.bodyB = banshouBody;
-    _reDefine.localAnchorA.Set(0.5, 1);
-    _reDefine.localAnchorB.Set(0.5, 0);
-    
-    _reDefine.enableLimit = true;
-    _reDefine.enableMotor = true;
-    _reDefine.lowerAngle = CC_DEGREES_TO_RADIANS( 30 );
-    _reDefine.upperAngle = CC_DEGREES_TO_RADIANS( 75 );
-    _reDefine.motorSpeed = -10;
-    _reDefine.maxMotorTorque = 2000;
-    /**
-    _reDefine.Initialize(shoot_base_body, banshouBody,B2Utils::convertToB2Point( banshou->getPosition() ) );
-    _reDefine.enableMotor = true;
-    _reDefine.enableLimit = true;
-    _reDefine.lowerAngle = CC_RADIANS_TO_DEGREES( 9);
-    _reDefine.upperAngle = CC_RADIANS_TO_DEGREES( 75);
-    _reDefine.maxMotorTorque = 1000;
-    _reDefine.motorSpeed = -20;
-     **/
-   
-    
-    revoleJoint = (b2RevoluteJoint*)world->CreateJoint( &_reDefine);
-    
-    
+    b2RevoluteJointDef armJointDef;
+    armJointDef.Initialize( world_body, banshouBody, B2Utils::convertToB2Point( ccp(shoot_base->boundingBox().getMidX(), shoot_base->boundingBox().getMaxY()))); // 最后一个参数是定的锚点
+    armJointDef.enableMotor = true;
+    armJointDef.enableLimit = true;
+    armJointDef.motorSpeed  = -90; //-1260;
+    armJointDef.lowerAngle  = CC_DEGREES_TO_RADIANS( -45);
+    armJointDef.upperAngle  = CC_DEGREES_TO_RADIANS(75);
+    armJointDef.maxMotorTorque = 700;
+    revoleJoint = (b2RevoluteJoint*)world->CreateJoint(&armJointDef);
+
     
 }
 

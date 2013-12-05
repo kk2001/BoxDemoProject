@@ -33,6 +33,8 @@ public:
     
     void update( float dt );
     
+    void addSprite();
+    
     void init_shoot();
     // default implements are used to call script callback if exist
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);

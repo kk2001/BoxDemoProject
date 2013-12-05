@@ -35,6 +35,7 @@ b2World* B2Utils::createWorldWithEdge(){
     worlddef.position.SetZero();
     
     b2Body* world_body = world->CreateBody( &worlddef);
+
     
     b2EdgeShape edge;
     edge.Set( b2Vec2(0, 0 ), b2Vec2( s.width / 2 / PIM_ITO , 0  ));
@@ -52,6 +53,7 @@ b2World* B2Utils::createWorldWithEdge(){
     edge.Set( b2Vec2( s.width / PIM_ITO , 0 ), b2Vec2( s.width / 2 / PIM_ITO , s.height / PIM_ITO  ));
     
     world_body->CreateFixture(&edge, 0 );
+    
     
     
     return world;
