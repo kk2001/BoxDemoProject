@@ -248,7 +248,9 @@ void TestBird::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     weldJoint = (b2WeldJoint*)world->CreateJoint( &weldJointDef );
      **/
     
+    // 注意焊接关节设定之后就不在能移动位置了 所以如果想在焊接之前移动那么就只能在定义焊接关节之前设定位置
     ballBBody->SetTransform( b2Vec2( baseSprite->getPositionX() / PM_ITO , baseSprite->getPositionY() /PM_ITO ) , 0 );
+    
     b2WeldJointDef wd;
     wd.Initialize( worldBody, ballBBody, ballBBody->GetWorldCenter());
     wd.collideConnected =false;
