@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB3660AA184F67DA00ACE338 /* NewBox2dWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */; };
 		CB9613DC184F80F70026B8CF /* MyContractListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9613DA184F80F70026B8CF /* MyContractListener.cpp */; };
+		CE0E173318556C7C00C14BC0 /* TestBird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0E173118556C7C00C14BC0 /* TestBird.cpp */; };
 		CE4442B11850688A008F1F82 /* ShootScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4442AF1850688A008F1F82 /* ShootScene.cpp */; };
 		CE5CACD218473BE8008F1945 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD118473BE8008F1945 /* QuartzCore.framework */; };
 		CE5CACD418473BE8008F1945 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5CACD318473BE8008F1945 /* OpenGLES.framework */; };
@@ -310,6 +311,8 @@
 		CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBox2dWorld.h; path = Classes/NewBox2dWorld.h; sourceTree = "<group>"; };
 		CB9613DA184F80F70026B8CF /* MyContractListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyContractListener.cpp; path = Classes/MyContractListener.cpp; sourceTree = "<group>"; };
 		CB9613DB184F80F70026B8CF /* MyContractListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyContractListener.h; path = Classes/MyContractListener.h; sourceTree = "<group>"; };
+		CE0E173118556C7C00C14BC0 /* TestBird.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestBird.cpp; path = Classes/TestBird.cpp; sourceTree = "<group>"; };
+		CE0E173218556C7C00C14BC0 /* TestBird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBird.h; path = Classes/TestBird.h; sourceTree = "<group>"; };
 		CE4442AF1850688A008F1F82 /* ShootScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShootScene.cpp; path = Classes/ShootScene.cpp; sourceTree = "<group>"; };
 		CE4442B01850688A008F1F82 /* ShootScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShootScene.h; path = Classes/ShootScene.h; sourceTree = "<group>"; };
 		CE5CACCE18473BE8008F1945 /* BoxDemoProjects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxDemoProjects.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2212,6 +2215,8 @@
 			children = (
 				CB9613DA184F80F70026B8CF /* MyContractListener.cpp */,
 				CB9613DB184F80F70026B8CF /* MyContractListener.h */,
+				CE0E173118556C7C00C14BC0 /* TestBird.cpp */,
+				CE0E173218556C7C00C14BC0 /* TestBird.h */,
 				CB3660A8184F67DA00ACE338 /* NewBox2dWorld.cpp */,
 				CB3660A9184F67DA00ACE338 /* NewBox2dWorld.h */,
 				CE4442AF1850688A008F1F82 /* ShootScene.cpp */,
@@ -2469,6 +2474,7 @@
 				CE5CADEC18473BE9008F1945 /* CCParticleExamples.cpp in Sources */,
 				CE5CADB418473BE9008F1945 /* CCKeypadDelegate.cpp in Sources */,
 				CE5CB00518473BEC008F1945 /* SlotData.cpp in Sources */,
+				CE0E173318556C7C00C14BC0 /* TestBird.cpp in Sources */,
 				CE5CAEE418473BEB008F1945 /* CCTMXTiledMap.cpp in Sources */,
 				CE5CAF8F18473BEC008F1945 /* CCInvocation.cpp in Sources */,
 				CE5CB03A18473BED008F1945 /* b2Math.cpp in Sources */,

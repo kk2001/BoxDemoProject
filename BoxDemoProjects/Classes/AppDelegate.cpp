@@ -13,6 +13,7 @@
 #include "HelloWorldScene.h"
 #include "GameWorld.h"
 #include "NewBox2dWorld.h"
+#include "TestBird.h"
 #include "ShootScene.h"
 
 USING_NS_CC;
@@ -40,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = ShootScene::scene();
+    CCScene *pScene = TestBird::scene();
 
     // run
     pDirector->runWithScene(pScene);
